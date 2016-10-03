@@ -29,7 +29,9 @@
 		// number of loops to slow down in
 		slowLoops: 6,
 		// function to run on each loop
-		execute: function() {return false;}
+		execute: function() {return false;},
+		// function to run on last loop
+		lastExecute: function() {return false;}
 	};
 
 	Loop.prototype._init = function() {
@@ -71,6 +73,7 @@
 			} else if(i >= (loops + slowLoops)) {
 				delay += slowRate;
 				slowRate += self.options.slowRate;
+				self.options.lastExecute(self);
 				self.el.removeEventListener(self.options.transitionEvent, _bindLoop);
 			}
 
