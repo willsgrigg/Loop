@@ -38,6 +38,7 @@
 		this.el = document.createElement("DIV");
     	document.body.appendChild(this.el);
     	this.el.style.transition = 'transform 0s';
+    	this.el.style.willChange = 'transform';
 
     	this.options.transitionEvent = this._whichTransitionEvent();
 	};
