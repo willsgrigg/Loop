@@ -7,7 +7,7 @@ There is some example markup in the index.html and a simple initialisation in in
 
 ## Getting Started
 
-Loop will execute the normal callback for the number of loops plus slow loops before running the last callback, i.e. with 6 loops and 6 slow loops it will loop normally 12 times then loop once more with the last callback.
+Loop will execute the normal callback for the number of loops plus slow loops before running the last callback, i.e. with 6 loops and 6 slow loops it will loop normally 12 times then loop once more with the last callback for a total of 13 loops.
 
 You can specify an array of loops in which case it will choose a random number from the range each time it starts looping, generating a new number on each subsequent start.
 
