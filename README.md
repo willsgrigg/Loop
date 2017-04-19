@@ -36,7 +36,7 @@ Start looping:
 loop.go();
 ```
 
-Stop loop:
+Stop looping, only required if infinite is set to true:
 
 ```
 loop.stop();
