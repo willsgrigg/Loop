@@ -28,6 +28,8 @@
 		loops: 6,
 		// number of loops to slow down in
 		slowLoops: 6,
+		// run infinitely
+		infinite: false,
 		// function to run on each loop
 		execute: function() {return false;},
 		// function to run on last loop
@@ -64,18 +66,24 @@
 
     	var _bindLoop = function() {
 
-    		self.options.execute(self);
+    		var lastLoop = i >= (loops + slowLoops);
+
+    		if(!lastLoop) {
+	    		self.options.execute(self);
+	    	}
 
 			i++;
 
-			if(i > loops && (i - loops) < slowLoops) {
-				delay += slowRate;
-				slowRate += self.options.slowRate;
-			} else if(i >= (loops + slowLoops)) {
-				delay += slowRate;
-				slowRate += self.options.slowRate;
-				self.options.lastExecute(self);
-				self.el.removeEventListener(self.options.transitionEvent, _bindLoop);
+			if(!self.options.infinite) {
+				if(i > loops && (i - loops) < slowLoops) {
+					delay += slowRate;
+					slowRate += self.options.slowRate;
+				} else if(lastLoop) {
+					delay += slowRate;
+					slowRate += self.options.slowRate;
+					self.options.lastExecute(self);
+					self.el.removeEventListener(self.options.transitionEvent, _bindLoop);
+				}
 			}
 
 			self.el.style.transitionDelay = delay + 'ms';
