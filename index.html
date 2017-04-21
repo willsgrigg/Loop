@@ -23,7 +23,22 @@
 		<img src="http://www.w3schools.com/css/img_fjords.jpg" width="600" height="400" />
 
 		<script src="Loop.js"></script>
-		<script src="init.js"></script>
+		<script>
+			loop = new Loop({
+				delay: 400,
+				slowRate: 50,
+				loops: 6,
+				slowLoops: 6,
+				execute: function(instance) {
+					console.log('Execute ',instance);
+					$('img').toggleClass('transition');
+				},
+				lastExecute: function(instance) {
+					console.log('Last execute ',instance);
+					$('img').toggleClass('transition');
+				}
+			});
+		</script>
 	</body>
 
 </html>
